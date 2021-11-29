@@ -3,8 +3,8 @@
  * polls or data relating to parties in the polls.
  * 
  * @author gabe
- * @version 1.1
- *
+ * @version 1.1.2
+ * @since 2021-11-29
  */
 public class PollList {
 	// Used for text visualizations of poll/party data.
