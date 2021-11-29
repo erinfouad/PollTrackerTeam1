@@ -3,6 +3,7 @@
  * polls or data relating to parties in the polls.
  * 
  * @author gabe
+ * @version 1.1
  *
  */
 public class PollList {
@@ -87,20 +88,20 @@ public class PollList {
 		for (int poll = 0; poll < this.polls.length; poll++) {
 			try {
 				Party party = this.polls[poll].getParty(partyName);
-				if (party.seats > 0) {
-					seats += party.seats;
+				if (party.getProjectedNumberOfSeats() > 0) {
+					seats += party.getProjectedNumberOfSeats();
 					seatsPolls++;
 				}
-				if (party.votes > 0) {
-					votesPercent += party.votes;
+				if (party.getProjectedPercentageOfVotes() > 0) {
+					votesPercent += party.getProjectedPercentageOfVotes();
 					votesPolls++;
 				}
 			} catch (Exception e) {
-				System.out.println("The party is not in " + this.polls[poll].name);
+				System.out.println("The party is not in " + this.polls[poll].getPollName());
 			}
 		}
-		if (seatsPolls > 0) avgParty.seats = seats / seatsPolls;
-		if (votesPolls > 0) avgParty.votes = votesPercent / votesPolls;
+		if (seatsPolls > 0) avgParty.setProjectedNumberOfSeats(seats / seatsPolls);
+		if (votesPolls > 0) avgParty.setProjectedPercentageOfVotes(votesPercent / votesPolls);
 		return avgParty;
 	}
 	/**
@@ -112,7 +113,7 @@ public class PollList {
 	public Poll getAggregatePoll(String[] partyNamesList) {
 		Poll aggregate = new Poll("Aggregate", partyNamesList.length);
 		for (int partyName = 0; partyName < partyNamesList.length; partyName++) {
-			aggregate.parties[partyName] = this.getAveragePartyData(partyNamesList[partyName]);
+			aggregate.addParty(this.getAveragePartyData(partyNamesList[partyName]));
 		}
 		
 		return aggregate;
