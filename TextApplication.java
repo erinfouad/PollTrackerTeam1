@@ -5,11 +5,13 @@
 public class TextApplication {
 	private PollList polls;
 
-	public void displayPollDataBySeat() {
+	public void displayPollDataBySeat(Poll aPoll) {
+		aPoll.textVisualizationBySeats(this.polls.MAX_STARS_FOR_VISUALIZATION, 0);
 		return;
 	}
 
 	public void displayPollsBySeat(String[] stuff) {
+		
 		return;
 	}
 	
