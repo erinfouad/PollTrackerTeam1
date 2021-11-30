@@ -70,16 +70,16 @@ public class TextApplication {
 		int numOfPolls = myScanner.nextInt();
 		
 		System.out.print("Would you like me to create a random set of polls? ");
-		String createRandomPolls = myScanner.next();
+		String createRandomPolls = myScanner.next().toLowerCase();
 		
 		System.out.print("Would you like to visualize by seats or by votes? ");
-		String visualizationMode = myScanner.next();
+		String visualizationMode = myScanner.next().toLowerCase();
 		
-		if (createRandomPolls.equalsIgnoreCase("yes")) {
+		if (createRandomPolls.equals("yes")) {
 			Factory pollFactory = new Factory(numOfSeats);
 			pollFactory.setPartyNames(partyNamesArray);
 			this.polls = pollFactory.createRandomPollList(numOfPolls);
-		} else if (createRandomPolls.equalsIgnoreCase("no")) {
+		} else if (createRandomPolls.equals("no")) {
 			this.polls = new PollList(numOfPolls, numOfSeats);
 			promptForPollList(partyNamesArray);
 		}
@@ -88,12 +88,14 @@ public class TextApplication {
 		while (running) {
 			System.out.print("\nOptions: all (show result of all polls), aggregate (show aggregate result), "
 					+ "quit (end application) \nChoose an option: ");
-			String optionSelected = myScanner.next();
-			if (optionSelected.equalsIgnoreCase("aggregate")) {
-				displayPollDataBySeat(this.polls.getAggregatePoll(partyNamesArray));
-			} else if (optionSelected.equalsIgnoreCase("all")) {
-				displayPollsBySeat(partyNamesArray);
-			} else if (optionSelected.equalsIgnoreCase("quit")) {
+			String optionSelected = myScanner.next().toLowerCase();
+			if (optionSelected.equals("aggregate")) {
+				if (visualizationMode.equals("seats")) displayPollDataBySeat(this.polls.getAggregatePoll(partyNamesArray));
+				if (visualizationMode.equals("votes")) displayPollDataByVote(this.polls.getAggregatePoll(partyNamesArray));
+			} else if (optionSelected.equals("all")) {
+				if (visualizationMode.equals("seats")) displayPollsBySeat(partyNamesArray);
+				if (visualizationMode.equals("votes")) displayPollsByVote(partyNamesArray);
+			} else if (optionSelected.equals("quit")) {
 				return;
 			}
 		}
