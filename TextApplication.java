@@ -89,14 +89,17 @@ public class TextApplication {
 			System.out.print("\nOptions: all (show result of all polls), aggregate (show aggregate result), "
 					+ "quit (end application) \nChoose an option: ");
 			String optionSelected = myScanner.next().toLowerCase();
-			if (optionSelected.equals("aggregate")) {
-				if (visualizationMode.equals("seats")) displayPollDataBySeat(this.polls.getAggregatePoll(partyNamesArray));
-				if (visualizationMode.equals("votes")) displayPollDataByVote(this.polls.getAggregatePoll(partyNamesArray));
-			} else if (optionSelected.equals("all")) {
-				if (visualizationMode.equals("seats")) displayPollsBySeat(partyNamesArray);
-				if (visualizationMode.equals("votes")) displayPollsByVote(partyNamesArray);
-			} else if (optionSelected.equals("quit")) {
-				return;
+			switch(optionSelected) {
+				case "aggregate":
+					if (visualizationMode.equals("seats")) displayPollDataBySeat(this.polls.getAggregatePoll(partyNamesArray));
+					if (visualizationMode.equals("votes")) displayPollDataByVote(this.polls.getAggregatePoll(partyNamesArray));
+					break;
+				case "all":
+					if (visualizationMode.equals("seats")) displayPollsBySeat(partyNamesArray);
+					if (visualizationMode.equals("votes")) displayPollsByVote(partyNamesArray);
+					break;
+				case "quit":
+					System.exit(0);
 			}
 		}
 	}
