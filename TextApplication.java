@@ -23,6 +23,21 @@ public class TextApplication {
 		return;
 	}
 	
+	public void displayPollDataByVote(Poll aPoll) {
+		int percentPerStar = 100 / this.polls.MAX_STARS_FOR_VISUALIZATION; // duplicate from pollList, fix later
+		if (percentPerStar < 1.0*this.polls.getNumOfSeats() / this.polls.MAX_STARS_FOR_VISUALIZATION) percentPerStar++;
+		System.out.println(aPoll.textVisualizationByVotes(this.polls.MAX_STARS_FOR_VISUALIZATION, percentPerStar));
+		return;
+	}
+	
+	public void displayPollsByVote(String[] partyNames) {
+		for (Poll aPoll : this.polls.polls) {
+			displayPollDataByVote(aPoll);
+		}
+		
+		displayPollDataByVote(polls.getAggregatePoll(partyNames));
+	}
+	
 	public void promptForPollList(String[] partyNamesArray) {
 		Scanner myScanner = new Scanner(System.in);
 		for(int i = 0; i < this.polls.polls.length; i++) {
@@ -57,6 +72,8 @@ public class TextApplication {
 		System.out.print("Would you like me to create a random set of polls? ");
 		String createRandomPolls = myScanner.next();
 		
+		System.out.print("Would you like to visualize by seats or by votes? ");
+		String visualizationMode = myScanner.next();
 		
 		if (createRandomPolls.equalsIgnoreCase("yes")) {
 			Factory pollFactory = new Factory(numOfSeats);
