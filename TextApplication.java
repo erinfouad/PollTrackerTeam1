@@ -8,8 +8,7 @@ public class TextApplication {
 	private PollList polls;
 
 	public void displayPollDataBySeat(Poll aPoll) {
-		int seatsPerStar = this.polls.getNumOfSeats() / this.polls.MAX_STARS_FOR_VISUALIZATION; // duplicate from pollList, fix later
-		if (seatsPerStar < 1.0*this.polls.getNumOfSeats() / this.polls.MAX_STARS_FOR_VISUALIZATION) seatsPerStar++;
+		int seatsPerStar = this.polls.getAmountPerStar("seats");
 		System.out.println(aPoll.textVisualizationBySeats(this.polls.MAX_STARS_FOR_VISUALIZATION, seatsPerStar));
 		return;
 	}
@@ -24,8 +23,7 @@ public class TextApplication {
 	}
 	
 	public void displayPollDataByVote(Poll aPoll) {
-		int percentPerStar = 100 / this.polls.MAX_STARS_FOR_VISUALIZATION; // duplicate from pollList, fix later
-		if (percentPerStar < 1.0*this.polls.getNumOfSeats() / this.polls.MAX_STARS_FOR_VISUALIZATION) percentPerStar++;
+		int percentPerStar = this.polls.getAmountPerStar("votes");
 		System.out.println(aPoll.textVisualizationByVotes(this.polls.MAX_STARS_FOR_VISUALIZATION, percentPerStar));
 		return;
 	}

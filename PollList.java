@@ -46,8 +46,7 @@ public class PollList {
 	 * @return string The complete, multi-line visualization of each poll, based on seats
 	 */
 	public String textVisualizationBySeats() {
-		int seatsPerStar = this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION;
-		if (seatsPerStar < 1.0*this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION) seatsPerStar++;
+		int seatsPerStar = this.getAmountPerStar("seats");
 		String visualization = "";
 		for (int i = 0; i < polls.length; i++) {
 			if (polls[i] != null) {
@@ -58,13 +57,26 @@ public class PollList {
 		}
 		return visualization;
 	}
+	
+	public int getAmountPerStar(String seatsOrVotes) {
+		int amountPerStar = 0;
+		switch(seatsOrVotes) {
+			case "seats":
+				amountPerStar = this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION;
+				break;
+			case "votes":
+				amountPerStar = 100 / this.MAX_STARS_FOR_VISUALIZATION;
+				break;
+		}
+		if (amountPerStar < 1.0*this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION) amountPerStar++;
+		return amountPerStar;
+	}
 	/**
 	 * Displays a visual representation of each poll, based on projected percentage of votes attained.
 	 * @return string The complete, multi-line visualization of each poll, based on percentage of votes.
 	 */
 	public String textVisualizationByVotes() {
-		int percentPerStar = 100 / this.MAX_STARS_FOR_VISUALIZATION;
-		if (percentPerStar < 1.0*this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION) percentPerStar++;
+		int percentPerStar = this.getAmountPerStar("votes");
 		String visualization = "";
 		for (int i = 0; i < polls.length; i++) {
 			if (polls[i] != null) {
