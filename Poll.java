@@ -156,24 +156,24 @@ public class Poll {
 	 */
 
 	public String textVisualizationBySeats(int maxStars, double numOfSeatsPerStar) {
-		String data = "\n";
+		String partyInfo = "\n";
 
 		// This will add the string representation of the parties and their data to the
 		// local variable "data"
 
 		if (partiesInPoll > 1) {
 			for (Party aParty : parties) {
-				data = data + aParty.textVisualizationBySeats(maxStars, numOfSeatsPerStar) + "\n";
+				partyInfo = partyInfo + aParty.textVisualizationBySeats(maxStars, numOfSeatsPerStar) + "\n";
 			}
 
 			// Special case for if there is only one party in the poll, as in this case the
 			// party array at index 1 will be null
 
 		} else if (partiesInPoll == 1) {
-			data = data + parties[0].textVisualizationBySeats(maxStars, numOfSeatsPerStar);
+			partyInfo = partyInfo + parties[0].textVisualizationBySeats(maxStars, numOfSeatsPerStar);
 		}
 
-		return name + data;
+		return name + partyInfo;
 	}
 
 	/**
@@ -187,24 +187,24 @@ public class Poll {
 
 	public String textVisualizationByVotes(int maxStars, double percentOfVotesPerStar) {
 
-		String data = "\n";
+		String partyInfo = "\n";
 
 		// This will add the string representation of the parties and their data to the
 		// local variable "data"
 
 		if (partiesInPoll > 1) {
 			for (Party aParty : parties) {
-				data = data + aParty.textVisualizationByVotes(maxStars, percentOfVotesPerStar) + "\n";
+				partyInfo = partyInfo + aParty.textVisualizationByVotes(maxStars, percentOfVotesPerStar) + "\n";
 			}
 
 			// Special case for if there is only one party in the poll, as in this case the
 			// party array at index 1 will be null
 
 		} else if (partiesInPoll == 1) {
-			data = data + parties[0].textVisualizationByVotes(maxStars, percentOfVotesPerStar);
+			partyInfo = partyInfo + parties[0].textVisualizationByVotes(maxStars, percentOfVotesPerStar);
 		}
 
-		return name + data;
+		return name + partyInfo;
 	}
 
 	/**
@@ -213,22 +213,22 @@ public class Poll {
 	 */
 
 	public String toString() {
-		String names = "\n";
+		String partyNames = "\n";
 
 		// This will add the names of the parties to the local variable "names"
 
 		if (partiesInPoll > 1) {
 			for (Party aParty : parties) {
-				names = names + aParty.toString() + "\n";
+				partyNames = partyNames + aParty.toString() + "\n";
 			}
 
 			// Special case for if there is only one party in the poll, as in this case the
 			// party array at index 1 will be null
 
 		} else if (partiesInPoll == 1) {
-			names = names + parties[0].getName();
+			partyNames = partyNames + parties[0].getName();
 		}
-		return name + names;
+		return name + partyNames;
 	}
 
 	/**
