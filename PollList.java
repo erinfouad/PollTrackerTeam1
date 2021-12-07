@@ -32,16 +32,31 @@ public class PollList {
 		return this.polls;
 	}
 
+	public int getNumOfSeats() {
+		return this.numOfSeats;
+	}
+	
+	public int getAmountPerStar(String seatsOrVotes) {
+		int amountPerStar = 0;
+		switch (seatsOrVotes) {
+		case "seats":
+			amountPerStar = this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION;
+			break;
+		case "votes":
+			amountPerStar = 100 / this.MAX_STARS_FOR_VISUALIZATION;
+			break;
+		}
+		if (amountPerStar < 1.0 * this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION)
+			amountPerStar++;
+		return amountPerStar;
+	}
+	
 	/**
 	 * Displays the total number of seats in the election as well as a visual
 	 * representation of each poll
 	 */
 	public String toString() {
 		return "Number of seats: " + this.getNumOfSeats() + "\n" + this.textVisualizationBySeats();
-	}
-
-	public int getNumOfSeats() {
-		return this.numOfSeats;
 	}
 
 	/**
@@ -65,20 +80,6 @@ public class PollList {
 		return visualization;
 	}
 
-	public int getAmountPerStar(String seatsOrVotes) {
-		int amountPerStar = 0;
-		switch (seatsOrVotes) {
-		case "seats":
-			amountPerStar = this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION;
-			break;
-		case "votes":
-			amountPerStar = 100 / this.MAX_STARS_FOR_VISUALIZATION;
-			break;
-		}
-		if (amountPerStar < 1.0 * this.numOfSeats / this.MAX_STARS_FOR_VISUALIZATION)
-			amountPerStar++;
-		return amountPerStar;
-	}
 
 	/**
 	 * Displays a visual representation of each poll, based on projected percentage
@@ -161,13 +162,15 @@ public class PollList {
 		if (aPoll == null) {
 			System.out.println("Error, input poll is null");
 			return;
-		}
-		for (int i = 0; i < this.polls.length; i++) {
-			if (this.polls[i] == null) {
-				this.polls[i] = aPoll;
-				return;
+		} else if (this.polls[this.polls.length-1] != null){
+			System.out.println("Error: List full, no further polls may be added");
+		} else {
+			for (int i = 0; i < this.polls.length; i++) {
+				if (this.polls[i] == null) {
+					this.polls[i] = aPoll;
+					return;
+				}
 			}
 		}
-		System.out.println("Error: List full, no further polls may be added");
 	}
 }

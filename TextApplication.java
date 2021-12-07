@@ -13,9 +13,9 @@ public class TextApplication {
 
 	/**
 	 * This method provides a text visualization of the parties in a given poll's
-	 * data based on the amount of seats the parties receive
+	 * data based on the amount of seats the parties will win.
 	 * 
-	 * @param aPoll The parameter is a poll object
+	 * @param aPoll The poll to display in the visualization.
 	 */
 	public void displayPollDataBySeat(Poll aPoll) {
 		int seatsPerStar = this.polls.getAmountPerStar("seats");
@@ -54,7 +54,7 @@ public class TextApplication {
 	 * Provides a text visualization of the each poll in the poll list based in the
 	 * amount of votes for each party.
 	 * 
-	 * @param partyNames The parties to display in the visualization.
+	 * @param partyNames The names of the parties to display in the visualization.
 	 */
 	public void displayPollsByVote(String[] partyNames) {
 		for (Poll aPoll : this.polls.polls) {
@@ -71,7 +71,7 @@ public class TextApplication {
 	private void run() {
 		Scanner myScanner = new Scanner(System.in);
 
-		// These next statements prompt the user for the number of seats, party
+		// The following statements prompt the user for the number of seats, party
 		// names, number of polls, allows the user to create polls manually or randomly,
 		// and allows the user to choose to display the parties by seats or votes.
 		System.out.print("How many seats are available in the election? ");
@@ -120,31 +120,15 @@ public class TextApplication {
 	}
 
 	/**
-	 * Prompts and gets input from the user in the form of an integer.
-	 * 
-	 * @param prompt A string indicating to the user what to enter
-	 * @return The integer entered by the user.
-	 */
-
-	private int getIntInput(String prompt) {
-
-		System.out.print(prompt);
-		Scanner myScanner = new Scanner(System.in);
-		int input = myScanner.nextInt();
-		myScanner.close();
-		return input;
-	}
-
-	/**
-	 * This method prompts the user for all the information needed to create a new
-	 * set of polls
+	 * Prompts the user for all the information needed to create a new set of polls.
 	 *
 	 * @param partyNamesArray The parameter is an array of all the party names,
 	 *                        which the user has already provided
 	 */
-
 	private void promptForPollList(String[] partyNamesArray) {
 		Scanner myScanner = new Scanner(System.in);
+
+		// Takes input for each party in each poll and each poll in the poll list.
 		for (int i = 0; i < this.polls.polls.length; i++) {
 			System.out.print("Enter the name of poll " + (i + 1) + ": ");
 			String name = myScanner.next();
@@ -166,8 +150,8 @@ public class TextApplication {
 	 * @param visualizationMode The method to display visuals, either by votes or
 	 *                          seats.
 	 * @param partyNamesArray   The names the parties that will be displayed.
-	 * @return A boolean value indicating whether to call the function again or quit
-	 *         out the program.
+	 * @return A boolean value indicating whether the function should be called
+	 *         again or quit out the program.
 	 * 
 	 */
 	private boolean display(String visualizationMode, String[] partyNamesArray) {
@@ -179,7 +163,7 @@ public class TextApplication {
 		String optionSelected = myScanner.next().toLowerCase();
 
 		// Calls the appropriate display method based on previously entered options
-		// (seat/vote & aggregate/all)
+		// (seat/vote & aggregate/all/quit)
 		switch (optionSelected) {
 		case "aggregate":
 			if (visualizationMode.equals("seats"))
@@ -201,8 +185,8 @@ public class TextApplication {
 	}
 
 	/**
-	 * Uses the Factory class to generate a poll list to be used in the election
-	 * visualization.
+	 * Uses the Factory class to generate a random poll list to be used in the
+	 * election visualization.
 	 * 
 	 * @param numOfSeats      The number of seats available in the election.
 	 * @param partyNamesArray The parties to be added to each poll.
@@ -219,7 +203,7 @@ public class TextApplication {
 	 * input. This method does not take any user input directly, instead prior
 	 * entered input must be passed in as parameters.
 	 * 
-	 * @param choice          Either true, indicating random polls will be
+	 * @param choice          Either true, indicating random polls must be
 	 *                        generated, or false, allowing for user entered polls.
 	 * @param numOfSeats      The number of seats that will be available in the poll
 	 *                        list.
