@@ -46,6 +46,7 @@ public class Party {
 	 */
 	public Party(String aName, float aProjNumSeats, float aProjPercentageVotes) {
 		name = aName;
+
 		// set projected number of seats and percentage of votes if valid inputs
 		setProjectedNumberOfSeats(aProjNumSeats);
 		setProjectedPercentageOfVotes(aProjPercentageVotes);
@@ -186,13 +187,14 @@ public class Party {
 	 *         representation of that party
 	 */
 	private String starArray(int numOfStars, int maxStars) {
+
 		// the bar is placed at the halfway point of the maximum number of stars,
 		// rounded up.
 		int barIndex = (int) Math.ceil(maxStars / 2.0);
+
 		// An ArrayList is created to loop through and set string values at indices.
 		// Spaces are used to fill all non-star or bar indices, so the list is filled
-		// with
-		// " " and necessary indices are replaced with *, |, and toString
+		// with " " and necessary indices are replaced with *, |, and toString
 		// representation.
 		ArrayList<String> starArray = new ArrayList<String>(maxStars + 2);
 		for (int i = 0; i < maxStars + 1; i++) {
@@ -226,11 +228,14 @@ public class Party {
 	 */
 	public String textVisualizationBySeats(int maxStars, double numOfSeatsPerStar) {
 		String textVisualization;
+
 		// Validate that parameters are positive. Else, return blank string.
 		if (maxStars > 0 && numOfSeatsPerStar > 0) {
+
 			// The number of stars is the projected number of seats proportional to
 			// the number of seats represented by each star, rounded down.
 			int numOfStars = (int) (this.projectedNumberOfSeats / numOfSeatsPerStar);
+
 			// Call starArray method to create the string representation.
 			textVisualization = starArray(numOfStars, maxStars);
 		} else {
@@ -257,11 +262,14 @@ public class Party {
 	 */
 	public String textVisualizationByVotes(int maxStars, double numOfVotesPerStar) {
 		String textVisualization;
+
 		// Validate that parameters are positive. Else, return blank string.
 		if (maxStars > 0 && numOfVotesPerStar > 0) {
+
 			// The number of stars is the projected percentage of votes proportional to
 			// the number of seats represented by each star, rounded down.
 			int numOfStars = (int) ((this.projectedPercentageOfVotes * 100) / numOfVotesPerStar);
+
 			// Call starArray method to create the string representation.
 			textVisualization = starArray(numOfStars, maxStars);
 		} else {

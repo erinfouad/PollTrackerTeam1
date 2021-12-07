@@ -1,11 +1,11 @@
 /**
  * The Poll class represents a single poll. It allows the user to name the poll,
- * add parties to the poll, and retrieve information about parties that have been
- * added to the poll.
+ * add parties to the poll, and retrieve information about parties that have
+ * been added to the poll.
  * 
  * @author Sebastian Reinberg-Abernethy
  * @version 1.0
- * @since 2021/11/22
+ * @since 2021-11-22
  *
  */
 public class Poll {
@@ -41,7 +41,6 @@ public class Poll {
 	 * 
 	 * @return name
 	 */
-
 	public String getPollName() {
 		return name;
 	}
@@ -51,7 +50,6 @@ public class Poll {
 	 * 
 	 * @return parties
 	 */
-
 	public Party[] getParties() {
 		return parties;
 	}
@@ -61,7 +59,6 @@ public class Poll {
 	 * 
 	 * @return partiesInPoll
 	 */
-
 	public int getPartiesInPoll() {
 		return partiesInPoll;
 	}
@@ -74,14 +71,12 @@ public class Poll {
 	 * @param partyName
 	 * @return aParty or null
 	 */
-
 	public Party getParty(String partyName) {
 
 		for (Party aParty : parties) {
 
 			// This checks whether there is a party in the poll with the same name as the
 			// name given by the user
-
 			if (aParty.getName().equalsIgnoreCase(partyName)) {
 				return aParty;
 			}
@@ -94,7 +89,6 @@ public class Poll {
 	 * 
 	 * @return numParties
 	 */
-
 	public int getNumberOfParties() {
 		int numParties = 0;
 		for (Party aParty : parties) {
@@ -120,21 +114,17 @@ public class Poll {
 	 * 
 	 * @param aParty
 	 */
-
 	public void addParty(Party aParty) {
 
 		// Check to ensure the given party isn't null
-
 		if (aParty == null) {
 			System.out.print("Error, Party is Null.");
 		}
 
 		// Check to ensure that the given party isn't already in the poll
-
 		if (checkDuplicate(aParty)) {
 
 			// Next if statements ensure that the parties array isn't full
-
 		} else if (partiesInPoll < parties.length) {
 			parties[partiesInPoll] = aParty;
 			partiesInPoll++;
@@ -154,13 +144,11 @@ public class Poll {
 	 * @param numOfSeatsPerStar
 	 * @return data
 	 */
-
 	public String textVisualizationBySeats(int maxStars, double numOfSeatsPerStar) {
 		String partyInfo = "\n";
 
 		// This will add the string representation of the parties and their data to the
 		// local variable "data"
-
 		if (partiesInPoll > 1) {
 			for (Party aParty : parties) {
 				partyInfo = partyInfo + aParty.textVisualizationBySeats(maxStars, numOfSeatsPerStar) + "\n";
@@ -168,7 +156,6 @@ public class Poll {
 
 			// Special case for if there is only one party in the poll, as in this case the
 			// party array at index 1 will be null
-
 		} else if (partiesInPoll == 1) {
 			partyInfo = partyInfo + parties[0].textVisualizationBySeats(maxStars, numOfSeatsPerStar);
 		}
@@ -184,14 +171,12 @@ public class Poll {
 	 * @param percentOfVotesPerStar
 	 * @return data
 	 */
-
 	public String textVisualizationByVotes(int maxStars, double percentOfVotesPerStar) {
 
 		String partyInfo = "\n";
 
 		// This will add the string representation of the parties and their data to the
 		// local variable "data"
-
 		if (partiesInPoll > 1) {
 			for (Party aParty : parties) {
 				partyInfo = partyInfo + aParty.textVisualizationByVotes(maxStars, percentOfVotesPerStar) + "\n";
@@ -199,7 +184,6 @@ public class Poll {
 
 			// Special case for if there is only one party in the poll, as in this case the
 			// party array at index 1 will be null
-
 		} else if (partiesInPoll == 1) {
 			partyInfo = partyInfo + parties[0].textVisualizationByVotes(maxStars, percentOfVotesPerStar);
 		}
@@ -211,12 +195,10 @@ public class Poll {
 	 * Method returns the name of the poll and the names of the parties inside the
 	 * poll
 	 */
-
 	public String toString() {
 		String partyNames = "\n";
 
 		// This will add the names of the parties to the local variable "names"
-
 		if (partiesInPoll > 1) {
 			for (Party aParty : parties) {
 				partyNames = partyNames + aParty.toString() + "\n";
@@ -224,7 +206,6 @@ public class Poll {
 
 			// Special case for if there is only one party in the poll, as in this case the
 			// party array at index 1 will be null
-
 		} else if (partiesInPoll == 1) {
 			partyNames = partyNames + parties[0].getName();
 		}
@@ -237,14 +218,12 @@ public class Poll {
 	 * @param partyToCheck
 	 * @return boolean
 	 */
-
 	private boolean checkDuplicate(Party partyToCheck) {
 		int index = 0;
 		while (index < partiesInPoll) {
 
 			// If statement checks whether there is a party in the poll with the same name
 			// as the party given as an argument
-
 			if (parties[index].getName().equalsIgnoreCase(partyToCheck.getName())) {
 				parties[index] = partyToCheck;
 				return true;

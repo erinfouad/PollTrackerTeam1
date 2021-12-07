@@ -1,8 +1,12 @@
 import java.util.Scanner;
 
 /**
+ * Displays a visual representation of a poll list based on user input. Polls
+ * can be user created or randomly generated.
+ * 
  * @author gabe
  * @version 0.1
+ * @since 2021-12-06
  */
 public class TextApplication {
 	private PollList polls;
@@ -61,8 +65,8 @@ public class TextApplication {
 	}
 
 	/**
-	 * Runs the program, calling the appropriate methods to create
-	 * different visualizations of polls based on the user's input.
+	 * Runs the program, calling the appropriate methods to create different
+	 * visualizations of polls based on the user's input.
 	 */
 	private void run() {
 		Scanner myScanner = new Scanner(System.in);
@@ -106,7 +110,7 @@ public class TextApplication {
 
 	/**
 	 * Creates and runs the text application.
-	 *  
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -174,7 +178,8 @@ public class TextApplication {
 				+ "quit (end application) \nChoose an option: ");
 		String optionSelected = myScanner.next().toLowerCase();
 
-		// Calls the appropriate display method based on previously entered options (seat/vote & aggregate/all) 
+		// Calls the appropriate display method based on previously entered options
+		// (seat/vote & aggregate/all)
 		switch (optionSelected) {
 		case "aggregate":
 			if (visualizationMode.equals("seats"))
