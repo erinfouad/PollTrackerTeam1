@@ -107,6 +107,7 @@ public class TextApplication {
 		TextApplication aTextApplication = new TextApplication();
 		
 		aTextApplication.run();
+		int test = 0;
 	}
 
 }
